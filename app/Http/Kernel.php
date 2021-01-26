@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http;
+namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Closure;
 
 class Kernel extends HttpKernel
 {
@@ -21,6 +22,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\HerokuDomain::class,
     ];
 
     /**
@@ -63,4 +65,19 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+}
+
+class HerokuDomain {
+
+    public function handle($request, Closure $next)
+    {
+        if (substr($request->header('host'), -13) === 'herokuapp.com') {
+            dump(substr($request->header('host'), -13));
+            dd(redirect()->away(config('app.url') . $_SERVER['REQUEST_URI']));
+            // ドメイン末尾がherokuapp.comのアクセスの場合、.envで指定したAPP_URLに遷移させる
+            return redirect()->away(config('app.url') . $_SERVER['REQUEST_URI']);
+        }
+
+        return $next($request);
+    }
 }
