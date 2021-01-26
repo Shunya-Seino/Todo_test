@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://seino-kintai-todo.herokuapp.com/login/'),
+    'url' => env('APP_URL', 'https://seino-kintai-todo.herokuapp.com/'),
 
     'asset_url' => env('ASSET_URL', null),
 
