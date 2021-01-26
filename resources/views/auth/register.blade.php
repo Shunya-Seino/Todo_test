@@ -18,19 +18,19 @@
               @csrf
               <div class="form-group">
                 <label for="email">メールアドレス</label>
-                <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}" />
+                <input type="text" class="form-control" id="email" name="email" maxlength="255"　value="{{ old('email') }}" />
               </div>
               <div class="form-group">
                 <label for="name">ユーザー名</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" />
+                <input type="text" class="form-control" id="name" name="name" maxlength="32" value="{{ old('name') }}" />
               </div>
               <div class="form-group">
                 <label for="password">パスワード</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="password" maxlength="32" >
               </div>
               <div class="form-group">
                 <label for="password-confirm">パスワード（確認）</label>
-                <input type="password" class="form-control" id="password-confirm" name="password_confirmation">
+                <input type="password" class="form-control" id="password-confirm" name="password_confirmation" maxlength="32" >
               </div>
               <div class="text-right">
                 <button type="submit" class="btn btn-primary">送信</button>

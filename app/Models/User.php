@@ -49,5 +49,4 @@ class User extends Authenticatable
         //return $this->attributes;
         return $this->attributes["id"];
     }
-
 }
