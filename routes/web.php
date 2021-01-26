@@ -25,4 +25,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 });
 
+Route::get('/', '\App\Http\Controllers\TodoController@index')->name('todo.index');
+
 Auth::routes();
