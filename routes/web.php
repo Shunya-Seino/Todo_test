@@ -1,6 +1,8 @@
 <?php
 Route::group(['middleware' => 'auth'], function() {
 
+  Route::get('/', [App\Http\Controllers\MenuController::class, 'menu'])->name('menu');
+
   Route::get('/menu', [App\Http\Controllers\MenuController::class, 'menu'])->name('menu');
 
   Route::get('/todo/list', '\App\Http\Controllers\TodoController@index')->name('todo.index');
@@ -24,7 +26,5 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('/user/destroy', '\App\Http\Controllers\UserController@destroy')->name('user.destroy');
 
 });
-
-Route::get('/', '\App\Http\Controllers\TodoController@index')->name('todo.index');
 
 Auth::routes();
