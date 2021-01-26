@@ -9,9 +9,9 @@ class HerokuDomain {
   {
     if (substr($request->header('host'), -13) === 'herokuapp.com') {
         // ドメイン末尾がherokuapp.comのアクセスの場合、.envで指定したAPP_URLに遷移させる
-        dump(redirect()->away(config('app.url')));
+        dump(redirect()->away(config('app.url').$_SERVER['REQUEST_URI']));
         dump($_SERVER['REQUEST_URI']);
-        return (redirect()->away(config('app.url').$_SERVER['REQUEST_URI']));
+        return redirect()->away(config('app.url').$_SERVER['REQUEST_URI']);
     }
     return $next($request);
   }
